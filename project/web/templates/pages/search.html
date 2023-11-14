@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="shop spad">
+    <div class="container" style="margin-left: 300;">
+        <div class="row">
+            <form action="{% url 'shop' %}">
+                <h2 class="text-center">Search</h2>
+                <hr>
+                <div class="form-group">
+                    <label for="inputSearchProductName">Product Name Contains</label>
+                    <input type="text" class="form-control" name="searchname" id="inputSearchProductName"
+                        placeholder="cupcake">
+                </div>
+
+                <button type="submit" class="btn btn-warning">Search</button>
+            </form>
+        </div>
+</section class="shop spad">
+{% endblock %}

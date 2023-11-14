@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="containerr">
+  <input type="checkbox" id="check">
+  <div class="login form">
+    <header>Login</header>
+    {%include 'partials/_alert.html'%}
+
+  {%if request.user.is_authenticated%}
+  <h4 class="alert alert-warning">
+      welcome {{request.user.username}}, you are now logged in
+      <a href="{%url 'logout'%}">logout</a>
+  </h4>
+  {%else%}
+
+
+    <form method="post" action="#">
+      {% csrf_token %}
+      <input type="text" name='user' id="inputUsername" placeholder="Enter your Username">
+      <input type="password"name="pass" id="inputPassword" placeholder="Enter your password">
+
+      <input type="submit" name="btnin" class="btn btn-warning" value="Login" style="  color: #fff;
+      background: #f08632;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-top: 1.7rem;
+      cursor: pointer;
+      transition: 0.4s;">
+    </form>
+    {%endif%}
+    <div class="signup">
+      <span class="signup">Don't have an account?
+       <a href="{% url 'signup' %}">Signup</a>
+      </span>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

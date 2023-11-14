@@ -6,30 +6,6 @@
     <div class="loader"></div>
 </div>
 
-<!-- Offcanvas Menu Begin -->
-<div class="offcanvas-menu-overlay"></div>
-<div class="offcanvas-menu-wrapper">
-    <div class="offcanvas__cart">
-        <div class="offcanvas__cart__links">
-            <a href="#" class="search-switch"><img src="{% static 'img/icon/search.png' %}" alt=""></a>
-        </div>
-        <div class="offcanvas__cart__item">
-            <a href="#"><img src="{% static 'img/icon/cart.png' %}" alt=""> <span>0</span></a>
-            <div class="cart__price">Cart: <span>SAR 0.00</span></div>
-        </div>
-    </div>
-    <div class="offcanvas__logo">
-        <a href="./index.html"><img src="{% static 'img/logo.png' %}" alt=""></a>
-    </div>
-    <div id="mobile-menu-wrap"></div>
-    <div class="offcanvas__option">
-        <ul>
-            <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
-        </ul>
-    </div>
-</div>
-<!-- Offcanvas Menu End -->
-
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
     <div class="container">
@@ -37,12 +13,6 @@
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="breadcrumb__text">
                     <h2>Shop</h2>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="breadcrumb__links">
-                    <a href="./index.html">Home</a>
-                    <span>Shop</span>
                 </div>
             </div>
         </div>
@@ -57,8 +27,8 @@
         <div class="shop__option">
             <div class="row">
                 <div class="col-lg-7 col-md-7">
-                    <div class="shop__option__search">
-                        <form action="#">
+                    <div class="shop_option_search">
+                        <form action="{% url 'shop' %}">
                             <select>
                                 <option value="">Categories</option>
                                 <option value="">Red Velvet</option>
@@ -68,6 +38,12 @@
                                 <option value="">Gluten free</option>
                                 <option value="">Dozen Cupcackes</option>
                             </select>
+
+                            <input type="text" class="form-control" name="searchname" id="inputSearchProductName"
+                                placeholder="search by name">
+
+                            <button type="submit" class="btn btn-warning">Click here to search</button>
+                        </form>
                         </form>
                     </div>
                 </div>
@@ -77,12 +53,12 @@
             {% for pro in products %}
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="{{pro.photo.url}}">
+                    <div class="product_item_pic set-bg" data-setbg="{{pro.photo.url}}">
                         <div class="product__label">
-                            <span>SAR 30.00</span>
+                            <span>SAR {{pro.price}}</span>
                         </div>
                     </div>
-                    <div class="product__item__text">
+                    <div class="product_item_text">
                         <h6><a href="#">{{pro.name}}</a></h6>
                         <p>{{pro.description}}</p>
                         <br>

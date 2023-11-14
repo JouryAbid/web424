@@ -8,21 +8,28 @@
                     <div class="header__top__inner">
                         <div class="header__top__left">
                             <ul>
-                                <li><a href="{% url 'login' %}">Log in</a> <span class="arrow_carrot-down"></span></li>
+                                <li><a href="{% url 'signin' %}">Log in</a> <span class="arrow_carrot-down"></span></li>
                             </ul>
                         </div>
                         <div class="header__logo">
-                            <a href="./index.html"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                            <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt="logo"></a>
                         </div>
+                        {%if request.user.is_authenticated%}
+
+                        <span  style="margin-right: 5px;">
+                          welcome, {{request.user.username}}
+                        </span>
+                        {%endif%}
+
                         <div class="header__top__right">
                             <div class="header__top__right__links">
-                                <a href="#" class="search-switch"><img src="{% static 'img/icon/search.png' %}"
-                                        alt=""></a>
+                                <a href="{% url 'search' %}" class="search-switch"><img src="{% static 'img/icon/search.png' %}"
+                                        alt="search"></a>
                             </div>
                             <div class="header__top__right__cart">
-                                <a href="./shoping-cart.html"><img src="{% static 'img/icon/cart.png' %}" alt="">
-                                    <span>0</span></a>
-                                <div class="cart__price">Cart: <span>SAR 0.00</span></div>
+                                <a href="{% url 'basket' %}"><img src="{% static 'img/icon/cart.png' %}" alt="">
+                                    </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -38,7 +45,6 @@
                     <ul>
                         <li><a href="{% url 'index' %}">Home</a></li>
                         <li><a href="{% url 'shop' %}">Shop</a></li>
-                        <li><a href="{% url 'ProductDetails' %}">Product Details</a></li>
                         <li><a href="{% url 'basket' %}">Basket</a></li>
                         <li><a href="{% url 'order' %}">Order</a></li>
                 </nav>
