@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <!-- Breadcrumb Begin -->
-  <div class="breadcrumb-option">
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -25,61 +25,114 @@
 <!-- Shop Details Section Begin -->
 <section class="product-details spad">
     <div class="container">
+        <form id="fromaddtocart" action="{%url 'add_to_cart'%}">
         <div class="row">
             <div class="col-lg-6">
                 <div class="product__details__img">
                     <div class="product__details__big__img">
-                        <img class="big_img" src=" {% ' img/shop/details/product-big-1.jpg' %}" alt="">
+                        <img class="big_img" src="{{pro.photo.url}}" alt="">
                     </div>
                     <div class="product__details__thumb">
                         <div class="pt__item active">
-                            <img data-imgbigurl="img/shop/details/product-big-2.jpg"
-                            src=" {% ' img/shop/details/product-big-2.jpg' %}" alt="">
+                            <img data-imgbigurl="{% static 'img/shop/details/product-big-2.jpg'%}"
+                                src="{{pro.photo.url}}" alt="">
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="img/shop/details/product-big-1.jpg"
-                            src=" {% ' img/shop/details/product-big-1.jpg' %}" alt="">
+                            <img data-imgbigurl="{% static 'img/shop/details/product-big-1.jpg'%}"
+                                src="{{pro.photo.url}}" alt="">
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="img/shop/details/product-big-4.jpg"
-                            src=" {% ' img/shop/details/product-big-4.jpg' %}" alt="">
+                            <img data-imgbigurl="{% static 'img/shop/details/product-big-4.jpg'%}"
+                                src="{{pro.photo.url}}" alt="">
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="img/shop/details/product-big-3.jpg"
-                            src=" {% ' img/shop/details/product-big-3.jpg' %}" alt="">
+                            <img data-imgbigurl="{% static 'img/shop/details/product-big-3.jpg'%}"
+                                src="{{pro.photo.url}}" alt="">
                         </div>
                         <div class="pt__item">
-                            <img data-imgbigurl="img/shop/details/product-big-5.jpg"
-                            src=" {% ' img/shop/details/product-big-5.jpg' %}" alt="">
+                            <img data-imgbigurl="{% static 'img/shop/details/product-big-5.jpg'%}"
+                                src="{{pro.photo.url}}" alt="">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="product__details__text">
-                    <div class="product__label">Cupcake</div>
-                    <h4>SWEET AUTUMN LEAVES</h4>
-                    <h5>$26.41</h5>
-                    <p> Warm and sweet deserts</p> 
-                    <ul>
-                        <li>SKU: <span>17</span></li>
-                        <li>Category: <span>Biscuit cake</span></li>
-                        <li>Tags: <span>Gadgets, minimalisstic</span></li>
-                    </ul>
-                    <div class="product__details__option">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
-                            </div>
-                        </div>
-                        <a href="#" class="primary-btn">Add to cart</a>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
+                <form>
+
+                    <div class="product__details__text">
+                        <div class="product__label">{{pro.name}}</div>
+                        <h4>{{pro.description}}</h4>
+                        <h5>SAR {{pro.price}}</h5>
+                        <ul>
+                            <li>Description: {{pro.description}}</li>
+                            <li>Category:{{pro.Category}}</li>
+                        </ul>
+
+
+
+                        <!-- Button trigger modal -->
+                        <!-- <hr>
+                        <button type="submit" class="btn btn-warning addToCartBtn" data-toggle="modal" data-target="#staticBackdrop"
+                        style="background-color: aliceblue;">Add To Cart</button>
+                        <hr> -->
+
+
+                        <button type="button" class="btn btn-primary btn-warning" data-toggle="modal"
+                            data-target="#staticBackdrop">Add To Cart</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Select Quantity</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="inputQuantity">Quantity:</label>
+                                        <input type="text" class="form-control" name="qty" id="inputQuantity" value="1"
+                                            placeholder="" autofocus required>
+                                        <input type="hidden" name="pro_id" value="{{pro.id}}">
+                                        <input type="hidden" name="pricde" value="{{pro.price}}">
+                                        <!-- <div class="product__label">
+            <span>SAR {{pro.price}}</span>
         </div>
     </div>
+    <div class="product_item_text">
+        <h6><a href="#">{{pro.name}}</a></h6>
+        <p>{{pro.description}}</p>
+        </div>-->
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                                <button onclick="addtocart()" class="btn btn-warning">Confirm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                </form>
+                <script>
+                    function addtocart() {
+                      document.getElementById('btnclose').click();
+                      document.getElementById('frmaddtocart').submit();
+                    }
+                  </script>
+
+
+
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    <!--</div>-->
 </section>
 <!-- Shop Details Section End -->
 
@@ -104,45 +157,36 @@
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">Dozen Cupcakes</a></h6>
-                            <div class="product__item__price">$32.00</div>
+                            <div class="product__item__price">SAR 32.00</div>
                             <div class="cart_add">
                                 <a href="#">Add to cart</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-2.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
+                {% for pro in products %}
+                <div class="related__products__slider owl-carousel">
+                    <div class="col-lg-3">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" data-setbg="{{pro.photo.url}}">
+                                <div class="product__label">
+                                    <span>Cupcake</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Cookies and Cream</a></h6>
-                            <div class="product__item__price">$30.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-3.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Gluten Free Mini Dozen</a></h6>
-                            <div class="product__item__price">$31.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
+                            <div class="product__item__text">
+                                <h6><a href="#">{{pro.name}}</a></h6>
+                                <div class="product__item__price">SAR {{pro.price}}</div>
+                                <div class="cart_add">
+                                    <a href="{% url 'productdetails' pro.id %}">Show details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+
+               
+                
                 <div class="col-lg-3">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="img/shop/product-4.jpg">
@@ -152,7 +196,7 @@
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">Cookie Dough</a></h6>
-                            <div class="product__item__price">$25.00</div>
+                            <div class="product__item__price">SAR 25.00</div>
                             <div class="cart_add">
                                 <a href="#">Add to cart</a>
                             </div>
@@ -168,7 +212,7 @@
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">Vanilla Salted Caramel</a></h6>
-                            <div class="product__item__price">$05.00</div>
+                            <div class="product__item__price">SAR 05.00</div>
                             <div class="cart_add">
                                 <a href="#">Add to cart</a>
                             </div>
@@ -184,7 +228,7 @@
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">German Chocolate</a></h6>
-                            <div class="product__item__price">$14.00</div>
+                            <div class="product__item__price">SAR 14.00</div>
                             <div class="cart_add">
                                 <a href="#">Add to cart</a>
                             </div>

@@ -4,6 +4,7 @@ from django.db import models
 
 
 class product (models.Model):
+    id = models.IntegerField(max_length=2, primary_key=True)
     name = models.CharField(max_length=150)
     price = models.DecimalField(max_digits = 6, decimal_places = 2)
     description = models.TextField()

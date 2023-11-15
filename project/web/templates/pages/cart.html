@@ -26,23 +26,75 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="shopping__cart__table">
+                <div class="shopping_cart_table">
                     <table>
                         <thead>
                             <tr>
                                 <th>Product</th>
                                 <th>Quantity</th>
+                                <th>Price</th>
                                 <th>Total</th>
                                 <th></th>
                             </tr>
                         </thead>
+
+                        <tbody>
+                        {% for line in orderdetails %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td class="product__cart__item">
+                                <div class="product__cart__item__text">
+                                    <h6>{{line.product.name}}</h6>
+                                    <h5> SAR {{line.product.price}} </h5>
+                                    <h5>{{line.product.quantity}}</h5>
+                                    <h5>{{line.product.total}}</h5>
+                                </div>
+                            </td>
+                                 <td class="quantity__item">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <a href="" class = "btn btn-outline-warning btn-sm">-</a>
+                                            <h6>{{line.quantity}}</h6>
+                                            <a href="" class = "btn btn-outline-warning btn-sm">+</a>
+                                        </div>
+                                    </div>
+                                 </td>
+                            
+                                 <td class="cart__price"> {{line.price}} </td>
+                                 <td class="cart__price"> {% widthratio line.quantity 1 line.price %}</td>
+                                
+
+                            
+                            </tr>
+                            {% empty %}
+                            <h5 class = "alert alert-warnings">
+                                No details here
+                            </h5>
+
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <tbody>
                             <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
+                                <td class="product_cart_item">
+                                    <div class="product_cartitem_pic">
                                         <img src="{ % static 'img/shop/cart/cart-1.jpg' %} " alt="">
                                     </div>
-                                    <div class="product__cart__item__text">
+                                    <div class="product_cartitem_text">
                                         <h6>T-shirt Contrast Pocket</h6>
                                         <h5> 98.49 SAR </h5>
                                     </div>
@@ -58,11 +110,11 @@
                                 <td class="cart__close"><span class="icon_close"></span></td>
                             </tr>
                             <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
+                                <td class="product_cart_item">
+                                    <div class="product_cartitem_pic">
                                         <img src="{ % static 'img/shop/cart/cart-2.jpg' %}" alt="">
                                     </div>
-                                    <div class="product__cart__item__text">
+                                    <div class="product_cartitem_text">
                                         <h6>Diagonal Textured Cap</h6>
                                         <h5> 98.49 SAR</h5>
                                     </div>
@@ -78,11 +130,11 @@
                                 <td class="cart__close"><span class="icon_close"></span></td>
                             </tr>
                             <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
+                                <td class="product_cart_item">
+                                    <div class="product_cartitem_pic">
                                         <img src="{ % static 'img/shop/cart/cart-3.jpg' %}" alt="">
                                     </div>
-                                    <div class="product__cart__item__text">
+                                    <div class="product_cartitem_text">
                                         <h6>Basic Flowing Scarf</h6>
                                         <h5> 98.49 SAR </h5>
                                     </div>
@@ -98,11 +150,11 @@
                                 <td class="cart__close"><span class="icon_close"></span></td>
                             </tr>
                             <tr>
-                                <td class="product__cart__item">
-                                    <div class="product__cart__item__pic">
+                                <td class="product_cart_item">
+                                    <div class="product_cartitem_pic">
                                         <img src="{ % static 'img/shop/cart/cart-4.jpg' %}" alt="">
                                     </div>
-                                    <div class="product__cart__item__text">
+                                    <div class="product_cartitem_text">
                                         <h6>Basic Flowing Scarf</h6>
                                         <h5> 98.49 SAR </h5>
                                     </div>
